@@ -17,7 +17,7 @@ var my_news = [
 ];
 
 var news = React.createClass({
-	getInitialStat: function() {
+	getInitialState: function() {
 		return {
 			visible: false
 		}
@@ -49,36 +49,112 @@ var news = React.createClass({
 			var newsCount = React.createElement('p', null, 'No news');
 		}
 		
-		return React.createElement('div', {'className': 'news'}, newsTemplate, newsCount);
+		return React.createElement('div', {
+			'className': 'news',
+			'ref': 'news'
+		}, newsTemplate, newsCount);
 	}
 });
 
 var inputClass = React.createClass({
+	getInitialState: function() {
+		return {
+			agreeNotChecked: true,
+			authorIsEmpty: true,
+    		textIsEmpty: true
+		};
+	},
+	onFieldChange: function(fieldName, e) {
+		if (e.target.value.trim().length > 0) {
+			this.setState({['' + fieldName]: false})
+		} else {
+			this.setState({['' + fieldName]: true})
+		}
+	},
 	onCliclHandler: function(e) {
-		alert(ReactDOM.findDOMNode(this.refs.myTestInput).value);
+		e.preventDefault();
+	    var author = ReactDOM.findDOMNode(this.refs.author).value;
+	    var textEl = ReactDOM.findDOMNode(this.refs.text);
+	    text = textEl.value;
+	    news = {
+	    	author: author,
+	    	text: text,
+	    	bigText: '...'
+	    }
+	    $(document).trigger('News.add', news);
+	    this.setState({textIsEmpty: true});
+	    textEl.value = '';
 	},
 	componentDidMount: function() { 
-	    ReactDOM.findDOMNode(this.refs.myTestInput).focus();
+	    ReactDOM.findDOMNode(this.refs.author).focus();
+	},
+	onCheckRuleClick: function(e) {
+	  	this.setState({agreeNotChecked: !this.state.agreeNotChecked});
 	},
 	render: function() {
 		var input = React.createElement('input', {
-			'className': 'test-input',
-			'placeholder': 'Enter value',
-			'defaultValue': '',
-			'ref': 'myTestInput'
-		}),
-			button = React.createElement('button',
-				{'onClick': this.onCliclHandler}, 'Test');
-		return React.createElement('div', null, input, button);
+				'className': 'add__author',
+				'placeholder': 'Enter value',
+				'defaultValue': '',
+				'ref': 'author',
+				'type': 'text',
+				'onChange': this.onFieldChange.bind(this, 'authorIsEmpty')
+			}),
+			button = React.createElement('button', {
+				'onClick': this.onCliclHandler,
+				'className': 'add__btn',
+				'ref': 'alert_button',
+				'disabled': this.state.agreeNotChecked || this.state.authorIsEmpty || this.state.textIsEmpty
+			}, 'Test'),
+			textarea = React.createElement('textarea', {
+				'className': 'add__text',
+				'defaultValue': '',
+				'placeholder': 'News text',
+				'ref': 'text',
+				'onChange': this.onFieldChange.bind(this, 'textIsEmpty')
+			}),
+			checkbox = React.createElement('input', {
+				'type': 'checkbox',
+				'defaultChecked': false,
+				'ref': 'checkrule',
+				'onChange': this.onCheckRuleClick
+			}),
+			label = React.createElement('label', {'className': 'add__checkrule'}, checkbox),
+			form = React.createElement('form', {'className': 'add cf'}, input, textarea, label, button);
+		return React.createElement('div', null, form);
 	}
 });
 
-var input = React.createElement(inputClass);
+var appClass = React.createClass({
+	getInitialState: function() {
+		return {
+			news: my_news
+		};
+	},
+	componentDidMount: function(){
+		var that = this;
+		$(document).on('News.add', function(e, news) {
+			var oldNews = that.state.news;
+			oldNews.push(news);
+			that.setState({news:oldNews});
+			alert('+1');
+		});
+	},
+	componentWillUnmount: function(){
+		$(document).unbind('News.add');
+	},
+	render: function() {
+		var add = React.createElement(inputClass);
+		var newsElement = React.createElement(news, {'data': this.state.news});
+		var title = React.createElement('h3', null, 'News');
+		return React.createElement('div', {'className': 'app'}, add, title, newsElement);
+	}
+});
 
-var newsElement = React.createElement(news, {'data': my_news});
-var title = React.createElement('h3', null, 'News');
 
-var app = React.createElement('div', {'className': 'app'}, title, input, newsElement);
+
+
+var app = React.createElement(appClass);
 
 ReactDOM.render(
 	app,
