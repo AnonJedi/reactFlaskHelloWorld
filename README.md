@@ -2,20 +2,34 @@
 
 ####This is demo project with using react and flask
 
-##Preparing
+##Install requirements
 
-For install **docker** use this https://docs.docker.com/mac/ tutorial
+All commands run from root of project
 
-After install docker add user _docker_ to root group
-
-```console 
-$ sudo usermod -aG docker {username}
+1. Pip installation:
 ```
-
-After this step reboot system
-
-Than run command
-
-```console
-$ docker build ubuntu:14.04 .
+    $ sudo apt-get install -y python-pip
 ```
+2. Virtual environment installation:
+```
+    $ sudo pip install virtualenv
+    $ virtualenv env
+```
+After installing virtual environment activate this
+```
+    $ . env/bin/activate
+```
+3. Installation flask
+```
+    $ pip install flask
+```
+4. For install npm follow this instruction https://docs.npmjs.com/getting-started/installing-node
+5. React and ReactDOM installation
+```
+    $ npm install --save react react-dom
+```
+6. For using installed npm packages we need install webpack
+```
+    $ npm install webpack --save
+```
+7. 
