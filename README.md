@@ -26,7 +26,7 @@ After installing virtual environment activate this
 4. For install npm follow this instruction https://docs.npmjs.com/getting-started/installing-node
 After installation npm from root of project run command
 ```
-    $ npm install --save
+    $ npm install
 ```
 
 ##Run the application

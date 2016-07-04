@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var $ = require('jquery');
-require("babel-register");
 
 var my_news = [
   {
@@ -37,17 +36,14 @@ var news = React.createClass({
 		var newsTemplate;
 		if (data.length > 0) {
 			newsTemplate = data.map(function(item, index) {
-				var author = React.createElement('p', {'className': 'news_author'}, item.author + ':');
-				var news = React.createElement('p', {'className': 'news_text'}, item.text);
-				var bigText = React.createElement('p', {
-					'className': 'big_text ' + visible ? 'none' : ''
-				}, item.bigText);
-				var link = React.createElement('a', {
-					'href': '#', 
-					'className': 'news_readmore ' + visible ? '' : 'none',
-					'onClick': this.readmoreClick
-				}, 'more');
-				return React.createElement('div', {'className': 'article', 'key': index}, author, news, link, bigText);
+				return <div className="article" key={index}>
+						<p className="news_author">{item.author + ':'}</p>
+						<p className="news_text">{item.text}</p>
+						<a className={"news_readmore " + (visible ? "" : "none")}
+						   href="#"
+						   onclick={this.readmoreClick}>more</a>
+						<p className={"big_text " + (visible ? "none" : "")}>{item.bigText}</p>
+					</div>;
 			});
 			var newsCount = React.createElement('strong', {'className': 'news_count'}, 'count: ' + data.length);
 		} else {
@@ -85,7 +81,7 @@ var inputClass = React.createClass({
 	    	author: author,
 	    	text: text,
 	    	bigText: '...'
-	    }
+	    };
 	    $(document).trigger('News.add', news);
 	    this.setState({textIsEmpty: true});
 	    textEl.value = '';
