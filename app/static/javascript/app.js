@@ -1,5 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var $ = require('jquery');
+require("babel-register");
 
 var my_news = [
   {
@@ -95,6 +97,7 @@ var inputClass = React.createClass({
 	  	this.setState({agreeNotChecked: !this.state.agreeNotChecked});
 	},
 	render: function() {
+		debugger;
 		var input = React.createElement('input', {
 				'className': 'add__author',
 				'placeholder': 'Enter value',
@@ -136,11 +139,10 @@ var appClass = React.createClass({
 	},
 	componentDidMount: function(){
 		var that = this;
-		$(document).on('News.add', function(e, news) {
-			var oldNews = that.state.news;
-			oldNews.push(news);
-			that.setState({news:oldNews});
-			alert('+1');
+		$(document).on('News.add', function(e, newNews) {
+			var news = that.state.news;
+			news.push(newNews);
+			that.setState({news:news});
 		});
 	},
 	componentWillUnmount: function(){
@@ -153,9 +155,6 @@ var appClass = React.createClass({
 		return React.createElement('div', {'className': 'app'}, add, title, newsElement);
 	}
 });
-
-
-
 
 var app = React.createElement(appClass);
 

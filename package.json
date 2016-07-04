@@ -1,0 +1,19 @@
+{
+  "name": "reactFlaskHelloWorld",
+  "description": "Application for study developing with react and flask technologiers",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnonJedi/reactFlaskHelloWorld"
+  },
+  "dependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-register": "^6.9.0",
+    "react": "^15.2.0",
+    "react-dom": "^15.2.0",
+    "webpack": "^1.13.1"
+  },
+  "scripts": {
+    "compile": "babel app/static/javascript -d app/static/bin/src && webpack app/static/bin/src/* app/static/bin/script.js && rm -r app/static/bin/src"
+  }
+}

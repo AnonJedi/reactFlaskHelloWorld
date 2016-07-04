@@ -24,12 +24,21 @@ After installing virtual environment activate this
     $ pip install flask
 ```
 4. For install npm follow this instruction https://docs.npmjs.com/getting-started/installing-node
-5. React and ReactDOM installation
+After installation npm from root of project run command
 ```
-    $ npm install --save react react-dom
+    $ npm install --save
 ```
-6. For using installed npm packages we need install webpack
+
+##Run the application
+Activate virtual environment:
 ```
-    $ npm install webpack --save
+    $ . env/bin/activate
 ```
-7. 
+For start server run this command from project root:
+```
+    $ python runserver.py
+```
+For assembly static js files run this command from project root:
+```
+    $ npm run compile
+```
