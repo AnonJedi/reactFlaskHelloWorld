@@ -2,24 +2,21 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const $ = require('jquery');
 
-class AddNews extends React.createClass{
-    constructor(){
-        super(props);
-    }
-	getInitialState() {
+const AddNews = React.createClass({
+ 	getInitialState() {
 		return {
 			agreeNotChecked: true,
 			authorIsEmpty: true,
     		textIsEmpty: true
 		};
-	};
+	},
 	onFieldChange(fieldName, e) {
 		if (e.target.value.trim().length > 0) {
 			this.setState({['' + fieldName]: false})
 		} else {
 			this.setState({['' + fieldName]: true})
 		}
-	};
+	},
 	onClickHandler(e) {
 		e.preventDefault();
 	    var author = ReactDOM.findDOMNode(this.refs.author).value;
@@ -33,13 +30,13 @@ class AddNews extends React.createClass{
 	    $(document).trigger('News.add', news);
 	    this.setState({textIsEmpty: true});
 	    textEl.value = '';
-	};
+	},
 	componentDidMount() {
 	    ReactDOM.findDOMNode(this.refs.author).focus();
-	};
+	},
 	onCheckRuleClick(e) {
 	  	this.setState({agreeNotChecked: !this.state.agreeNotChecked});
-	};
+	},
 	render() {
 		var input = <input
 				className="add__author"
@@ -68,7 +65,7 @@ class AddNews extends React.createClass{
 			label = <label className="add__checkrule">{checkbox}</label>,
 			form = <form className="add cf">{input}{textarea}{label}{button}</form>;
 		return <div>{form}</div>;
-	};
-}
+	}
+});
 
 module.exports = AddNews;

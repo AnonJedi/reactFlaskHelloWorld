@@ -3,3 +3,5 @@ node_modules/
 *.pyc
 .idea/
 app/static/bin/
+settings.py
+alembic.ini

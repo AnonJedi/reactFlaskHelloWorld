@@ -2,7 +2,7 @@ var React = require('react');
 
 var Article = require('./article');
 
-class News extends React.createClass {
+const News = React.createClass({
 	render() {
 		var data = this.props.data;
 		var newsTemplate, newsCount;
@@ -25,6 +25,6 @@ class News extends React.createClass {
 			{newsCount}
 		</div>
 	}
-}
+});
 
 module.exports = News;

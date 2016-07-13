@@ -1,0 +1,6 @@
+db_credentials = {
+    'db_name': '', # name of current db
+    'username': '', # username of db owner
+    'password': '', # password for db
+    'host': '' # host of db (for locally should be 'localhost')
+}

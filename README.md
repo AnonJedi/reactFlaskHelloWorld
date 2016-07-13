@@ -28,6 +28,32 @@ After installation npm from root of project run command
 ```
     $ npm install
 ```
+5. Installation MySQLdb
+```
+    $ pip install MySQL-python
+```
+
+
+##Install database
+
+For installation MySQL run this:
+```
+    $ sudo apt-get install -y mysql-server
+```
+
+Than lets create database and user for it:
+```
+    $ mysql -uroot -ppassword
+    > CREATE DATABASE react_flask_tutorial;
+    > CREATE USER 'blog_user'@'localhost' IDENTIFIED BY 'blogpassword';
+    > GRANT ALL PRIVILEGES ON react_flask_tutorial . * TO 'blog_user'@'localhost';
+    > FLUSH PRIVILEGES;
+```
+
+##Setting up
+
+In root of project must be _settings.py.template_ file. Copy it to project root and rename to _settings.py_.
+After this open _settings.py_ and fill empty fields.
 
 ##Run the application
 Activate virtual environment:
