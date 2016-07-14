@@ -4,4 +4,3 @@ node_modules/
 .idea/
 app/static/bin/
 settings.py
-alembic.ini

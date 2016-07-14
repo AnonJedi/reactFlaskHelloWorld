@@ -31,7 +31,7 @@ def upgrade():
         CREATE TABLE message (
           id BIGINT PRIMARY KEY AUTO_INCREMENT,
           user_id BIGINT REFERENCES user(id),
-          address_to BIGINT REFERENCES user(id) DEFAULT NULL,
+          address_to BIGINT REFERENCES user(id),
           created_at TIMESTAMP,
           title TEXT,
           message TEXT

@@ -2,15 +2,31 @@
 
 ####This is demo project with using react and flask
 
+##Install database
+
+For install MySQL run this:
+```
+    $ sudo apt-get install -y mysql-server libmysqlclient-dev
+```
+
+Than lets create database and user for it:
+```
+    $ mysql -uroot -p
+    > CREATE DATABASE react_flask_tutorial;
+    > CREATE USER 'blog_user'@'localhost' IDENTIFIED BY 'blogpassword';
+    > GRANT ALL PRIVILEGES ON react_flask_tutorial . * TO 'blog_user'@'localhost';
+    > FLUSH PRIVILEGES;
+```
+
 ##Install requirements
 
 All commands run from root of project
 
-1. Pip installation:
+1. Pip install:
 ```
     $ sudo apt-get install -y python-pip
 ```
-2. Virtual environment installation:
+2. Virtual environment install:
 ```
     $ sudo pip install virtualenv
     $ virtualenv env
@@ -19,35 +35,29 @@ After installing virtual environment activate this
 ```
     $ . env/bin/activate
 ```
-3. Installation flask
+3. Install flask
 ```
     $ pip install flask
 ```
-4. For install npm follow this instruction https://docs.npmjs.com/getting-started/installing-node
-After installation npm from root of project run command
+4. For install npm follow this instruction https://www.digitalocean.com/community/tutorials/node-js-ubuntu-14-04-ru
+After Install npm from root of project run command
 ```
     $ npm install
 ```
-5. Installation MySQLdb
+5. Install MySQLdb
 ```
     $ pip install MySQL-python
 ```
-
-
-##Install database
-
-For installation MySQL run this:
+6. Install alembic
 ```
-    $ sudo apt-get install -y mysql-server
+    $ pip install Flask-Alembic
 ```
 
-Than lets create database and user for it:
+## Migrations
+
+To keep track of db changes run command:
 ```
-    $ mysql -uroot -ppassword
-    > CREATE DATABASE react_flask_tutorial;
-    > CREATE USER 'blog_user'@'localhost' IDENTIFIED BY 'blogpassword';
-    > GRANT ALL PRIVILEGES ON react_flask_tutorial . * TO 'blog_user'@'localhost';
-    > FLUSH PRIVILEGES;
+    $ alembic upgrade head
 ```
 
 ##Setting up
