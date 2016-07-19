@@ -6,6 +6,6 @@ def login_required(func):
     @wraps(func)
     def decorated(*args, **kwargs):
         if 'signedin' not in session:
-            redirect(url_for('signin'), code=200)
+            return redirect(url_for('render_login'))
         return func(*args, **kwargs)
     return decorated

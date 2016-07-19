@@ -41,16 +41,24 @@ var AppClass = React.createClass({
 	componentWillUnmount: function(){
 		$(document).unbind('News.add');
 	},
+	logoutBtnHandler: function () {
+		$.post('/logout', function (data) {
+			if (JSON.parse(data)['success']) {
+				window.location.pathname = "/entry";
+			}
+		});
+	},
 	render: function() {
 		return <div className="app">
 			<AddNews />
 			<h3>News</h3>
 			<News data={this.state.news} />
+			<button className="logout_button" onClick={this.logoutBtnHandler}>Logout</button>
 		</div>;
 	}
 });
 
 ReactDOM.render(
 	<AppClass />,
-	document.getElementById('element')
+	document.getElementById('profile')
 );
