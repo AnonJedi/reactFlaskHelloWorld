@@ -52,6 +52,10 @@ After Install npm from root of project run command
 ```
     $ pip install Flask-Alembic
 ```
+7. Install flask WTForm
+```
+    $ pip install Flask-WTF
+```
 
 ## Migrations
 

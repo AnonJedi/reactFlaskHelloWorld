@@ -1,10 +1,16 @@
 from flask import Flask
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from settings import db_credentials
 
 app = Flask(__name__)
 
-from app.controller import index, login
-import MySQLdb as db
-from settings import db_credentials
+app.secret_key = 'super secret key'
 
-connection = db.connect(db_credentials['host'], db_credentials['username'],
-                        db_credentials['password'], db_credentials['db_name'])
+engine = create_engine('mysql://%s:%s@%s/%s' % (
+    db_credentials['username'], db_credentials['password'],
+    db_credentials['host'], db_credentials['db_name']))
+
+db_session = sessionmaker(bind=engine)
+
+from app.controller import index, entry

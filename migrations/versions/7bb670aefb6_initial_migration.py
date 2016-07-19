@@ -20,12 +20,13 @@ def upgrade():
     op.execute("""
         CREATE TABLE user (
           id BIGINT PRIMARY KEY AUTO_INCREMENT,
-          username VARCHAR(30) NOT NULL,
+          email VARCHAR(30) NOT NULL,
           firstname VARCHAR(255) DEFAULT NULL,
           lastname VARCHAR(255) DEFAULT NULL,
           password TEXT,
           gravatar TEXT,
-          registered_at TIMESTAMP
+          registered_at TIMESTAMP,
+          UNIQUE KEY(email)
         );
 
         CREATE TABLE message (
