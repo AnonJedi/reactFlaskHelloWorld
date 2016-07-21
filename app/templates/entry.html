@@ -8,16 +8,18 @@
     <div class="login-page">
 		<div class="login-page__landing">
 			<h1>KV</h1>
-			<h3>Join us and all will be fine</h3>
+			<h3>Join us and everything will be fine</h3>
 		</div>
 		<div class="login-page__input-forms">
 			<form class="input-forms__login" name="login" action="/signin" method="post">
+                {{ signin_form.csrf_token }}
 				<label class="login__label">Login</label>
 				<input class="login__field" name="email" type="email" maxlength="30" placeholder="e-mail" required>
 				<input class="login__field" name="password" type="password" placeholder="password" required>
 				<input class="login__batton" type="submit" value="Sign in">
 			</form>
 			<form class="input-forms__login" name="login" action="/signup" method="post">
+                {{ signup_form.csrf_token }}
 				<label class="login__label">Registration</label>
 				<input class="login__field" name="email" type="email" maxlength="30" placeholder="e-mail" required>
 				<input class="login__field" name="firstname" type="text" maxlength="30" placeholder="firstname" required>

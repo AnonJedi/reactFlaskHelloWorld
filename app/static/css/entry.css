@@ -1,7 +1,12 @@
 body {
-  background: rgba(0, 102, 255, 0.38);
-  font-family: sans-serif;
-  margin: 0;
+    background: linear-gradient(to left, #007ddc, #FA597B);
+    background: -webkit-gradient(linear, 100% 0%, 0% 0%, from(#007ddc), to(#FA597B));
+    background: -webkit-linear-gradient(right, #007ddc, #FA597B);
+    background: -moz-linear-gradient(right, #007ddc, #FA597B);
+    background: -ms-linear-gradient(right, #007ddc, #FA597B);
+    background: -o-linear-gradient(right, #007ddc, #FA597B);
+    font-family: sans-serif;
+    margin: 0;
 }
 
 .login-page {

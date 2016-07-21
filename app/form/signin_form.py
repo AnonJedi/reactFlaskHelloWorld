@@ -1,4 +1,5 @@
-from wtforms import Form, StringField, PasswordField, validators
+from wtforms import StringField, PasswordField, validators
+from flask.ext.wtf import Form
 
 
 class SigninForm(Form):

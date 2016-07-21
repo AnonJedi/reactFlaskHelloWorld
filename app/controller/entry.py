@@ -11,7 +11,8 @@ log = logging.getLogger(__name__)
 
 @app.route('/entry')
 def render_login():
-    return render_template('entry.html')
+    return render_template('entry.html', signin_form=SigninForm(),
+                           signup_form=SignupForm())
 
 
 @app.route('/signin', methods=['POST'])

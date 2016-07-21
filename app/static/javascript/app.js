@@ -42,9 +42,17 @@ var AppClass = React.createClass({
 		$(document).unbind('News.add');
 	},
 	logoutBtnHandler: function () {
-		$.post('/logout', function (data) {
-			if (JSON.parse(data)['success']) {
-				window.location.pathname = "/entry";
+		var csrftoken = $('meta[name=csrf-token]').attr('content')
+		$.ajax({
+			url: '/logout',
+			type: 'POST',
+			headers: {
+				'X-CSRFToken': csrftoken
+			},
+			success: function (data) {
+				if (JSON.parse(data)['success']) {
+					window.location.pathname = "/entry";
+				}
 			}
 		});
 	},
